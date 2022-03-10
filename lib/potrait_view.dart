@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:majoo_day3/card_widget.dart';
+import 'package:majoo_day3/widget/aktif_card.dart';
+import 'package:majoo_day3/widget/core/card_widget.dart';
+import 'package:majoo_day3/widget/header_body.dart';
+import 'package:majoo_day3/widget/meninggal_card.dart';
+import 'package:majoo_day3/widget/sembuh_card.dart';
+import 'package:majoo_day3/widget/text_note.dart';
 
 class PotraitView extends StatelessWidget {
   const PotraitView({Key? key}) : super(key: key);
@@ -62,27 +67,7 @@ class _Header extends StatelessWidget {
             bottomRight: Radius.circular(50),
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Perkembangan \nCOVID-19 Indonesia',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.blueGrey[900],
-                  fontSize: 28 * _mediaQuery.textScaleFactor,
-                  fontWeight: FontWeight.w700,
-                )),
-            Text('Last update: ${DateTime.now().toString()}',
-                style: TextStyle(
-                  color: Colors.blueGrey[900],
-                  fontSize: 15 * _mediaQuery.textScaleFactor,
-                )),
-            Align(
-                alignment: Alignment.bottomRight,
-                child: IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.refresh))),
-          ],
-        ),
+        child: const HeaderBody(),
       ),
     );
   }
@@ -93,19 +78,9 @@ class _AktifCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return AktifCard(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: CardCustom(
-          titleLabel: 'Kasus aktif',
-          subtitleLabel: '5,457,775',
-          captionLabel: '49,447',
-          emoji: '🤒',
-          colorText: Colors.brown,
-          color: Colors.orange[200],
-        ),
-      ),
+      width: MediaQuery.of(context).size.width,
     );
   }
 }
@@ -115,19 +90,9 @@ class _SembuhCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SembuhCard(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: CardCustom(
-          titleLabel: 'Sembuh',
-          subtitleLabel: '4,736,234',
-          captionLabel: '61,361',
-          emoji: '😄',
-          colorText: Colors.green[800],
-          color: Colors.green[200],
-        ),
-      ),
+      width: MediaQuery.of(context).size.width,
     );
   }
 }
@@ -137,20 +102,9 @@ class _MeninggalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: CardCustom(
-          titleLabel: 'Meninggal',
-          subtitleLabel: '147,586',
-          captionLabel: '244',
-          emoji: '😥',
-          colorText: Colors.red[800],
-          color: Colors.red[200],
-        ),
-      ),
-    );
+    return MeninggalCard(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        width: MediaQuery.of(context).size.width);
   }
 }
 
@@ -159,14 +113,6 @@ class _TextNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0),
-      child: Text(
-          'Note: Data harian Covid-19 biasanya update pada pukul sekitar 17.00 WIB',
-          style: TextStyle(
-            color: Colors.blueGrey[900],
-            fontSize: 13 * MediaQuery.of(context).textScaleFactor,
-          )),
-    );
+    return TextNote(padding: const EdgeInsets.symmetric(horizontal: 30.0));
   }
 }
